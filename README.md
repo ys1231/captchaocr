@@ -1,9 +1,11 @@
 # 验证码识别
 - 基于`PyTorch`训练模型
 
-# install
+# 安装依赖库
 ```shell
-# 安装
+pip install -r requirements.txt
+
+# 安装 or 
 pip install torch torchvision # torchaudio
 # 数据集生成
 pip install Pillow captcha
@@ -11,7 +13,7 @@ pip install Pillow captcha
 #pip install flask
 pip install tensorboard
 ```
-# Use
+# 使用教程
 
 ```python
 # 没有数据先生成数据 
@@ -28,8 +30,15 @@ ocr.train('./data/tmp', './model1.pth', train_path_split='_',epochs=100)
 ocr.predict('data/tmp/0G683_1712657652543.gif', './model1.pth')
 ## 多个预测
 ocr.predicts('./data/test','./model1.pth', train_path_split='-')
-
 ```
+
+# 查看统计数据
+```shell
+tensorboard --logdir=./log_dir
+# 点击显示的链接 随着训练 loss会越来越小
+http://localhost:6006
+```
+
 
 # 补充
 - 如果数据少可增加训练次数
@@ -37,8 +46,8 @@ ocr.predicts('./data/test','./model1.pth', train_path_split='-')
 ```shell
 # Mac 字体路径 生成验证码图片需要
 /System/Library/Fonts/Supplemental/Arial.ttf
-
 ```
+
 
 # 参考
 - https://github.com/vitiksys/captcha_ocr
