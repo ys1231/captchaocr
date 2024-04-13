@@ -32,6 +32,7 @@ def generate_captcha(path: str, captcha_lenth: int, lenth,
                      font_sizes: tuple[int, ...] = (12,), width=110, height=35):
     """
     生成验证码
+
     :param path: 保存路径
     :param captcha_lenth: 验证码长度
     :param lenth: 验证码个数
@@ -65,6 +66,7 @@ def generate_captcha(path: str, captcha_lenth: int, lenth,
 def get_defualt_device():
     """
     获取默认设备，优先选择 CUDA（如果可用），其次是 MPS（如果可用），最后是 CPU。
+
     返回: device (torch.device): 返回一个torch.device对象，代表当前可用的最好设备。
     """
 

@@ -18,6 +18,7 @@ class CaptchaOCRDataset(Dataset):
     def __init__(self, root_dir, split):
         '''
         验证码图片数据加载
+
         :param root_dir: 需要加载的图片目录路径
         :param split: 路径标签分割 从文件0A7NC-1713030561.png 获取标签 0A7NC
         '''
@@ -105,6 +106,7 @@ class CaptchaOCRDataset(Dataset):
     def vec2text(vec):
         '''
         将向量转换为文本表示。
+
         :param vec:
         :return:
         '''
@@ -134,17 +136,13 @@ class CaptchaOCRModel(nn.Module):
         """
         初始化CaptchaOCRModel实例。
 
-        主要步骤包括：
-        - 调用父类的构造函数初始化模型。
-        - 修改ResNet50的输入层以适应单通道输入。
-        - 修改最后一层全连接层，以输出与验证码长度和字符集大小相应的类别数。
         """
         super(CaptchaOCRModel, self).__init__()
         # 初始化ResNet50模型，不加载预训练权重
         self.__model = models.resnet50(weights=None)
-        # 修改输入层 直接打印 model 查看原始信息
+        # 修改输入层 修改ResNet50的输入层以适应单通道输入。 直接打印 model 查看原始信息
         self.__model.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
-        # 修改输出层
+        # 修改输出层 修改最后一层全连接层，以输出与验证码长度和字符集大小相应的类别数。
         self.__model.fc = nn.Linear(in_features=2048, out_features=tool.captcha_lenth * tool.captcha_array.__len__())
 
     def forward(self, x):
@@ -165,6 +163,7 @@ class CaptchaOCR:
     def __init__(self, captcha_lenth, captcha_array, width, height):
         """
         初始化CaptchaOCR实例。
+
         :param captcha_lenth: 验证码长度
         :param captcha_array: 验证码包含的字符
         :param width: 验证码图片的宽度
@@ -184,7 +183,7 @@ class CaptchaOCR:
     def train(self, train_path, model_pth_path='model.pth', train_path_split='-', epochs=10, log_dir="log_dir"):
         """
         训练验证码识别模型。
-        参数:
+
         :param train_path: 训练数据集的路径。该路径指向包含用于训练模型的验证码图像及对应标签的数据集。
         :param model_pth_path: data/model.pth 训练完成后模型保存的路径。模型训练结束后，将保存的模型状态字典（state_dict）写入此路径指定的文件中。
         :param train_path_split: 路径标签分割 从文件0A7NC-1713030561.png 获取标签 0A7NC
@@ -249,6 +248,7 @@ class CaptchaOCR:
     def predicts(self, images_path, model_pth_path='model.pth', train_path_split='-'):
         '''
         通过模型进行批量预测，输出预测结果
+
         :param images_path: 需要预测的图像目录路径
         :param model_pth_path: 使用的模型路径 如果为空使用上一次训练的模型
         :param train_path_split: 路径标签分割 从文件0A7NC-1713030561.png 获取标签 0A7NC
@@ -298,6 +298,7 @@ class CaptchaOCR:
     def predict(self, image_path, model_pth_path='model.pth'):
         """
         通过模型进行预测，输出预测结果
+
         :param image_path: 需要预测的图像路径
         :param model_pth_path: 使用的模型路径 如果为空使用上一次训练的模型
         """
