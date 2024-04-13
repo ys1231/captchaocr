@@ -1,9 +1,7 @@
 # 验证码识别
-
 - 基于`PyTorch`训练模型
 
 # install
-
 ```shell
 # 安装
 pip install torch torchvision # torchaudio
@@ -13,7 +11,7 @@ pip install Pillow captcha
 #pip install flask
 pip install tensorboard
 ```
-# 使用
+# Use
 
 ```python
 # 没有数据先生成数据 
@@ -31,7 +29,6 @@ ocr.predict('data/tmp/0G683_1712657652543.gif', './model1.pth')
 ## 多个预测
 ocr.predicts('./data/test','./model1.pth', train_path_split='-')
 
-
 ```
 
 # 补充
@@ -44,3 +41,4 @@ ocr.predicts('./data/test','./model1.pth', train_path_split='-')
 ```
 
 # 参考
+- https://github.com/vitiksys/captcha_ocr
