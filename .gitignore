@@ -2,3 +2,6 @@
 tmp
 .vscode
 tmp*
+.DS_Store
+/**/*.pyc
+log_dir
