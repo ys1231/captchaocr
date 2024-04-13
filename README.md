@@ -46,6 +46,7 @@ http://localhost:6006
 ```shell
 # Mac 字体路径 生成验证码图片需要
 /System/Library/Fonts/Supplemental/Arial.ttf
+# 目前只会训练一次,如果需要训练多次需修改模型文件名称或者删除已有的模型
 ```
 
 
