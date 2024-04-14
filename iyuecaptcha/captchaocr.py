@@ -28,7 +28,7 @@ class CaptchaOCRDataset(Dataset):
         self.__list_image_path = []
         skip_count = 0
         for path in os.listdir(root_dir):
-            if self.__split not in path:
+            if self.__split not in path or '.DS_Store' in path:
                 logger.debug(f'{path}: Not meeting the requirements,skip')
                 skip_count = skip_count + 1
                 continue

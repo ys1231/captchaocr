@@ -27,6 +27,31 @@ s_uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 s_symbol = "!@#$%^&*()_+-=<>?/.,;:|"
 
 
+def get_combinations(input_str, length):
+    '''
+    返回指定长度的所有组合字符串列表
+    :param input_str: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    :param length: 5
+    :return:
+    '''
+    from itertools import combinations
+
+    # 确保输入长度大于等于指定长度
+    if len(input_str) < length:
+        return []
+
+    # 生成所有长度为length的组合并将其转换为字符串形式
+    combinations_list = combinations(input_str, length)
+    return [''.join(comb) for comb in combinations_list]
+
+    # # 示例用法
+    # input_str = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    # length = 5
+    # result = get_combinations(input_str, length)
+    # print(result)
+    # print(len(result))
+
+
 def generate_captcha(path: str, captcha_lenth: int, lenth,
                      fonts: list = ['/System/Library/Fonts/Supplemental/Arial.ttf'],
                      font_sizes: tuple[int, ...] = (12,), width=110, height=35):
