@@ -330,7 +330,7 @@ class CaptchaOCR:
         reshape_img = torch.reshape(img, (-1, 1, tool.height, tool.width))
         # 加载模型到指定设备
         model = CaptchaOCRModel()
-        model.load_state_dict(torch.load(model_pth_path))
+        model.load_state_dict(torch.load(model_pth_path, map_location=self.__device))
         model.to(self.__device)
         model.eval()
         # 进行预测
